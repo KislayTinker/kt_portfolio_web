@@ -17,6 +17,24 @@ export default function ProjectViz({ id }: { id: string }) {
 
 function children(id: string): ReactElement[] {
   switch (id) {
+    case "text-to-sql":
+      return [
+        // natural-language prompt (left)
+        <rect key="q" x="38" y="74" width="118" height="70" rx="12" fill="rgba(91,140,255,.10)" stroke={B} strokeWidth="1.3" />,
+        <line key="q1" x1="56" y1="96" x2="138" y2="96" stroke={M} strokeWidth="4.5" strokeLinecap="round" opacity="0.8" />,
+        <line key="q2" x1="56" y1="112" x2="126" y2="112" stroke={M} strokeWidth="4.5" strokeLinecap="round" opacity="0.6" />,
+        <line key="q3" x1="56" y1="128" x2="116" y2="128" stroke={M} strokeWidth="4.5" strokeLinecap="round" opacity="0.45" />,
+        // clarification gate (middle)
+        <path key="dia" d="M200 82 L228 112 L200 142 L172 112 Z" fill="#0E141D" stroke={C} strokeWidth="1.6" />,
+        <text key="qm" x="200" y="120" textAnchor="middle" fontSize="22" fontFamily="monospace" fill={C}>?</text>,
+        <path key="c-l" d="M156 109 H172" stroke={C} strokeWidth="1.6" strokeDasharray="4 4" />,
+        <path key="c-r" d="M228 112 H266" stroke={V} strokeWidth="1.6" strokeDasharray="4 4" />,
+        // database cylinder (right = SQL)
+        <ellipse key="db-top" cx="312" cy="80" rx="42" ry="13" fill="rgba(177,140,255,.16)" stroke={V} strokeWidth="1.5" />,
+        <path key="db-body" d="M270 80 V150 A42 13 0 0 0 354 150 V80" fill="rgba(177,140,255,.06)" stroke={V} strokeWidth="1.5" />,
+        <path key="db-m1" d="M270 110 A42 13 0 0 0 354 110" fill="none" stroke={V} strokeWidth="1.1" opacity="0.6" />,
+        <path key="db-m2" d="M270 132 A42 13 0 0 0 354 132" fill="none" stroke={V} strokeWidth="1.1" opacity="0.45" />,
+      ];
     case "fakenews":
       return [
         <rect key="r1" x="44" y="66" width="120" height="94" rx="9" fill="none" stroke={B} strokeWidth="1.4" opacity="0.8" />,

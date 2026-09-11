@@ -13,6 +13,19 @@ Personal portfolio of **Kislay Tinker** — Data Science &amp; Machine Learning 
 
 A dark, data-visualisation-forward design featuring a cursor-reactive hero node-network, filterable projects with case-study drawers, hand-built SVG/canvas charts, and an interactive **K-Means clustering** demo implemented from scratch in the browser. Accessible (skip link, focus-trapped modals, `prefers-reduced-motion` support) and responsive.
 
+## Projects
+
+| Project | Focus | Repository |
+|---|---|---|
+| Text-to-SQL with Clarification Engine | LLM · FastAPI · Streamlit · safe SQL | [text-to-sql-clarification-engine](https://github.com/KislayTinker/text-to-sql-clarification-engine) |
+| Customer Personality Segmentation | ML pipeline · FastAPI · Docker | [Customer-Segmentation-Project](https://github.com/KislayTinker/Customer-Segmentation-Project) |
+| Hybrid Course Recommendation System | Recommenders · Streamlit | [Courses-Recommendation-System](https://github.com/KislayTinker/Courses-Recommendation-System) |
+| College Enquiry Chatbot | Semantic FAQ · Flask · FAISS | [College_Bot](https://github.com/KislayTinker/College_Bot) |
+| Stock Price Prediction (LSTM) | Deep learning · TensorFlow/Keras | [Stock-Price-Prediction-](https://github.com/KislayTinker/Stock-Price-Prediction-) |
+| Super Store Sales Dashboard | Power BI · DAX | [Super-Store-Sales](https://github.com/KislayTinker/Super-Store-Sales) |
+| In-Memory Search Engine | Java · inverted index | [In-Memory-Search-Engine](https://github.com/KislayTinker/In-Memory-Search-Engine) |
+| Multimodal Fake-News Detection | PyTorch · BERT + ViT | _in development_ |
+
 ## Run locally
 
 The single-file version needs no tooling — open `index.html` in a browser, or serve the folder:
