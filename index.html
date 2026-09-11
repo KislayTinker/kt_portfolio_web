@@ -271,6 +271,35 @@ h1.hero__title .l2{ display:block; }
 .hero__scroll i{ width:1px; height:34px; background:linear-gradient(var(--cyan),transparent); display:block; animation:scrolldrop 2.2s var(--ease) infinite; }
 @keyframes scrolldrop{ 0%{ transform:scaleY(.2); transform-origin:top; opacity:.3;} 50%{ transform:scaleY(1); opacity:1;} 100%{ transform:scaleY(.2); transform-origin:bottom; opacity:.3;} }
 
+/* hero: live notebook */
+.hero__grid{ position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(115% 92% at 72% 36%, #000 34%, transparent 80%);
+  mask-image:radial-gradient(115% 92% at 72% 36%, #000 34%, transparent 80%);
+  opacity:.55; }
+.hero__split{ display:grid; grid-template-columns:1.04fr .96fr; gap:clamp(30px,4.4vw,64px); align-items:center; }
+.hero__copy{ min-width:0; }
+.hero__split h1.hero__title{ font-size:clamp(2.3rem, 1.35rem + 3vw, 3.75rem); max-width:15ch; }
+.hero__split .hero__lead{ max-width:48ch; }
+.hero__nb{ min-width:0; }
+.hero__nb .nb{ background:linear-gradient(180deg,#0C121B,#0A0F17); border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; box-shadow:0 34px 90px -34px rgba(0,0,0,.85); }
+.nb__bar{ display:flex; align-items:center; gap:8px; padding:12px 15px; border-bottom:1px solid var(--line); background:rgba(255,255,255,.015); }
+.nb__bar .d{ width:11px; height:11px; border-radius:50%; }
+.nb__bar .d1{ background:#ff5f57; } .nb__bar .d2{ background:#febc2e; } .nb__bar .d3{ background:#28c840; }
+.nb__file{ margin-left:8px; font-family:var(--ff-mono); font-size:.72rem; color:var(--text-dim); }
+.nb__body{ padding:16px 20px 20px; }
+.nb__code{ margin:0; font-family:var(--ff-mono); font-size:.85rem; line-height:1.75; min-height:296px; white-space:pre-wrap; word-break:break-word; color:var(--text); }
+.nb__code .k{ color:var(--violet); } .nb__code .s{ color:var(--green); } .nb__code .f{ color:var(--cyan); } .nb__code .c{ color:var(--text-dim); } .nb__code .n{ color:var(--cyan); }
+.nb__caret{ display:inline-block; width:8px; height:1.05em; vertical-align:-2px; background:var(--cyan); margin-left:1px; animation:nbblink 1.05s steps(1) infinite; }
+@keyframes nbblink{ 50%{ opacity:0; } }
+@media (max-width:960px){
+  .hero__split{ grid-template-columns:1fr; gap:34px; }
+  .hero{ min-height:auto; padding-top:112px; padding-bottom:64px; }
+  .hero__split h1.hero__title{ max-width:20ch; }
+  .nb__code{ min-height:0; font-size:.8rem; }
+}
+
 /* ---------- about ---------- */
 .about__grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(36px,5vw,72px); align-items:start; }
 .about__bio p{ color:var(--text-muted); margin-top:18px; max-width:54ch; }
@@ -555,6 +584,7 @@ input[type=range]::-moz-range-thumb{ width:16px; height:16px; border-radius:50%;
   .reveal{ opacity:1; transform:none; }
   .cursor-ring,.cursor-dot{ display:none !important; }
   .hero__scroll i{ animation:none; }
+  .nb__caret{ animation:none; }
 }
 .no-cursor .cursor-ring,.no-cursor .cursor-dot{ display:none; }
 </style>
@@ -587,21 +617,29 @@ input[type=range]::-moz-range-thumb{ width:16px; height:16px; border-radius:50%;
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="home">
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero__grid" aria-hidden="true"></div>
     <div class="hero__veil" aria-hidden="true"></div>
-    <div class="wrap hero__inner">
-      <p class="hero__kicker reveal">Kislay Tinker <span aria-hidden="true">·</span> <span class="pin">Jaipur, India</span></p>
-      <div class="reveal" data-d="1"><span class="status"><span class="dot" aria-hidden="true"></span>Open to Data Science / ML / Research roles</span></div>
-      <h1 class="hero__title reveal" data-d="2"><span>Turning data into decisions.</span><span class="l2 grad-text">Building intelligence that matters.</span></h1>
-      <p class="hero__lead reveal" data-d="3">Final-year IT undergraduate and <b>Data Analytics intern</b> working across data science, machine learning and applied AI. I build systems that find signal in noise — <b>recommenders, predictive models, analytics and multimodal ML</b>.</p>
-      <div class="hero__cta reveal" data-d="4">
-        <a href="#projects" class="btn btn--primary">View projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="#contact" class="btn btn--ghost">Let's connect</a>
+    <div class="wrap hero__inner hero__split">
+      <div class="hero__copy">
+        <p class="hero__kicker reveal">Kislay Tinker <span aria-hidden="true">·</span> <span class="pin">Jaipur, India</span></p>
+        <div class="reveal" data-d="1"><span class="status"><span class="dot" aria-hidden="true"></span>Open to Data Science / ML / Research roles</span></div>
+        <h1 class="hero__title reveal" data-d="2"><span>Turning data into decisions.</span><span class="l2 grad-text">Building intelligence that matters.</span></h1>
+        <p class="hero__lead reveal" data-d="3">Final-year IT undergraduate and <b>Data Analytics intern</b> working across data science, machine learning and applied AI. I build systems that find signal in noise — <b>recommenders, predictive models, analytics and multimodal ML</b>.</p>
+        <div class="hero__cta reveal" data-d="4">
+          <a href="#projects" class="btn btn--primary">View projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#contact" class="btn btn--ghost">Let's connect</a>
+        </div>
+        <div class="hero__stats reveal" data-d="5">
+          <div class="hero__stat"><div class="n"><span data-count="9.51" data-dec="2">0</span></div><div class="l">CGPA / 10</div></div>
+          <div class="hero__stat"><div class="n"><span data-count="460">0</span>+</div><div class="l">LeetCode solved</div></div>
+          <div class="hero__stat"><div class="n"><span data-count="8">0</span></div><div class="l">Featured projects</div></div>
+        </div>
       </div>
-      <div class="hero__stats reveal" data-d="5">
-        <div class="hero__stat"><div class="n"><span data-count="9.51" data-dec="2">0</span></div><div class="l">CGPA / 10</div></div>
-        <div class="hero__stat"><div class="n"><span data-count="460">0</span>+</div><div class="l">LeetCode solved</div></div>
-        <div class="hero__stat"><div class="n"><span data-count="8">0</span></div><div class="l">Featured projects</div></div>
+      <div class="hero__nb reveal" data-d="3" aria-hidden="true">
+        <div class="nb">
+          <div class="nb__bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="nb__file">segmentation.ipynb</span></div>
+          <div class="nb__body"><pre id="nb-code" class="nb__code"></pre></div>
+        </div>
       </div>
     </div>
     <div class="hero__scroll" aria-hidden="true"><i></i>scroll</div>
@@ -1520,6 +1558,57 @@ input[type=range]::-moz-range-thumb{ width:16px; height:16px; border-radius:50%;
   /* =====================================================================
      HERO node network (canvas)
      ===================================================================== */
+  function initNotebook(){
+    var host = el("#nb-code");
+    if(!host) return;
+    var LINES = [
+      [['c','# customer segmentation — a quick pass']],
+      [['k','import'],['','  pandas '],['k','as'],['','  pd']],
+      [['k','from'],['','  sklearn.cluster '],['k','import'],['','  '],['f','KMeans']],
+      [['','']],
+      [['','df = '],['','pd.'],['f','read_csv'],['','('],['s','"customers.csv"'],['',')']],
+      [['','X  = '],['f','scale'],['','(df[features])']],
+      [['','']],
+      [['','km = '],['f','KMeans'],['','(n_clusters='],['n','3'],['',').'],['f','fit'],['','(X)']],
+      [['','df['],['s','"segment"'],['','] = km.labels_   '],['c','# → ready for the classifier']]
+    ];
+    var chars = [];
+    for(var i=0;i<LINES.length;i++){
+      var line = LINES[i];
+      for(var j=0;j<line.length;j++){
+        var cls = line[j][0], txt = line[j][1];
+        for(var k=0;k<txt.length;k++) chars.push([cls, txt.charAt(k)]);
+      }
+      if(i < LINES.length-1) chars.push(['','\n']);
+    }
+    var total = chars.length;
+    function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+    function render(count){
+      var html = "", curCls = null, buf = "";
+      function flush(){ if(buf){ html += curCls ? '<span class="'+curCls+'">'+esc(buf)+'</span>' : esc(buf); buf=""; } }
+      for(var i=0;i<count;i++){
+        var c = chars[i];
+        if(c[0] !== curCls){ flush(); curCls = c[0]; }
+        buf += c[1];
+      }
+      flush();
+      html += '<span class="nb__caret"></span>';
+      host.innerHTML = html;
+    }
+    if(reduce){ render(total); return; }
+    var n = 0, timer = null;
+    function tick(){
+      n++;
+      render(n);
+      if(n >= total){ timer = setTimeout(function(){ n = 0; render(0); timer = setTimeout(tick, 460); }, 2600); return; }
+      var justTyped = chars[n-1] && chars[n-1][1] === "\n";
+      var delay = justTyped ? 90 : (20 + Math.random()*26);
+      timer = setTimeout(tick, delay);
+    }
+    render(0);
+    setTimeout(tick, 650);
+  }
+
   function initHero(){
     var canvas = el("#hero-canvas"); if(!canvas) return;
     var ctx = canvas.getContext("2d");
@@ -1703,6 +1792,7 @@ input[type=range]::-moz-range-thumb{ width:16px; height:16px; border-radius:50%;
     initNav();
     initCursor();
     initHero();
+    initNotebook();
     initPlayground();
   }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", boot);
